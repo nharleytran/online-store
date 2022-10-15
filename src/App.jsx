@@ -5,17 +5,27 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Confirmation from "./pages/Confirmation";
 import Header from "./components/Header";
-import { Container } from "@chakra-ui/react";
+import { Container, useToast } from "@chakra-ui/react";
 
 function App() {
   const [cart, setCart] = useState({});
   const [cartSize, setCartSize] = useState(0);
+
+  const toast = useToast();
 
   const addToCart = (item, quantity) => {
     setCart((cart) => {
       const currQuantity = cart[item.id]
         ? cart[item.id].quantity + quantity
         : quantity;
+        if (currQuantity == 1){
+          toast({
+            title: `Item added to the cart`,
+            status: 'success',
+            isClosable: true,
+          });
+          setCartSize(counter => counter + 1);
+        }
       return { ...cart, [item.id]: { ...item, quantity: currQuantity } };
     });
   };
@@ -25,6 +35,12 @@ function App() {
     setCart((cart) => {
       if (quantity === 0) {
         delete cart[item.id];
+        toast({
+          title: `Item removed from the cart`,
+          status: 'warning',
+          isClosable: true,
+        });
+        setCartSize(counter => counter - 1);
       } else {
         cart[item.id].quantity = quantity;
       }
@@ -47,7 +63,8 @@ function App() {
           element={<Product addToCart={addToCart} />}
         />
         <Route
-          element={<Cart items={Object.values(cart)} updateCart={updateCart} />}
+          path="/cart" 
+          element={<Cart path="/cart" items={Object.values(cart)} updateCart={updateCart} />}
         />
         <Route
           path="/confirmation"

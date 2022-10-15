@@ -29,6 +29,7 @@ function CartItem(props) {
   const updateQuantity = (quantity) => {
     if (quantity >= MIN_QUANTITY) {
       setQuantity(quantity);
+      updateCart(item,quantity);
     }
   };
 
