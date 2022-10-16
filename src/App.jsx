@@ -57,7 +57,7 @@ function App() {
     <Container>
       <Header numItems={cartSize} />
       <Routes>
-        <Route path="/homepage" element={<Shop addToCart={addToCart} />} />
+        <Route path="/" element={<Shop addToCart={addToCart} />} />
         <Route
           path="/product/:id"
           element={<Product addToCart={addToCart} />}
