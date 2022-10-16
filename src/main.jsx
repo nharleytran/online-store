@@ -6,7 +6,7 @@ import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ChakraProvider>
-    <BrowserRouter>
+    <BrowserRouter basename="/hw4-estore-nharleytran">
       <App />
     </BrowserRouter>
   </ChakraProvider>
