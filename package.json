@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://cs280fa22-homework.github.io/hw4-estore-nharleytran",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
